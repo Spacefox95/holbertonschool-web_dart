@@ -5,5 +5,5 @@ void outer(String name, String id) {
 }
 
 String inner() {
-  return ('Hello Agent');
+  return 'Hello Agent';
 }
