@@ -1,14 +1,12 @@
 class Password {
-  String _password = '';
+  String _password;
 
-  Password({password}) : _password = password;
+  Password({String? password}) : _password = password ?? '';
 
-  String get password {
-    return _password;
-  }
+  String get password => _password;
 
-  set password(String password) {
-    _password = password;
+  set password(String? value) {
+    _password = value ?? '';
   }
 
   bool isValid() {
@@ -22,12 +20,10 @@ class Password {
     for (int i = 0; i < _password.length; i++) {
       String ch = _password[i];
 
-      // Check uppercase letter: ch is same as uppercase AND different from lowercase
       if (ch == ch.toUpperCase() && ch != ch.toLowerCase()) {
         hasUppercase = true;
       }
 
-      // Check digit
       if (RegExp(r'\d').hasMatch(ch)) {
         hasDigit = true;
       }
