@@ -1,6 +1,8 @@
 class Password {
   String _password = '';
 
+  Password({password}) : _password = password;
+
   bool isValid() {
     if (_password.length <= 8 || _password.length >= 16) {
       return false;
