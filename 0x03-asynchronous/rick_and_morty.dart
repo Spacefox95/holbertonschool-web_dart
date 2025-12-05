@@ -2,18 +2,19 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-Future<String> printRmCharacters() async {
+Future<void> printRmCharacters() async {
+  final url = Uri.https("rickandmortyapi.com", "api/character");
+
   try {
-    var url = Uri.https("rickandmortyapi.com", "api/character");
     final response = await http.get(url);
-    var dedodedResponse = jsonDecode(utf8.decode(response.bodyBytes));
-    var characterResults = dedodedResponse['results'];
+    final Map<String, dynamic> dedodedResponse =
+        jsonDecode(utf8.decode(response.bodyBytes));
+    final List<dynamic> characterResults = dedodedResponse['results'];
     for (final name in characterResults) {
-      final characterName = name['name'];
+      final String characterName = name['name'];
       print(characterName);
     }
   } catch (err) {
-    return 'error caught: $err';
+    print('error caught:$err');
   }
-  return '';
 }
